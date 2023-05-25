@@ -76,6 +76,7 @@ function changeColor(color) {
     texte.innerHTML = 'Travail'
   } else if (color == "3ebbff") { //blue
     texte.style.visibility = "hidden" ;
+    texte.style.color = `#${blue}` ;  
   }
   
   let mainBox = document.getElementById('mainBox')
@@ -83,51 +84,82 @@ function changeColor(color) {
   mainBox.style.boxShadow = `6px -2px 33px -6px #${color}`
 }
 
-let play = 0
+
+
+// 0 = 
+// 1 = 
+let resetSwitch = 0 
 let obj = new Time(Number(document.querySelector('#time').innerHTML.split(':')[1])+
 Number(document.querySelector('#time').innerHTML.split(':')[0])*60) 
-setInterval(function() {
-  if (obj.time == 0) {
+/* setInterval(function() {
+  if (obj.time == 0 && resetSwitch == 0 && pause == 0) {
     changeColor(green)
-    document.querySelector('#btnLaunch').innerHTML = "Launch"
-    play = 0 
   } 
-})
+}, 100) 
+*/
 
+let pause = 0 
 
 var inter
 let launch = document.querySelector('#btnLaunch')
 launch.addEventListener("click", function() {
+  resetSwitch = 0 
   obj.time = Number(document.querySelector('#time').innerHTML.split(':')[1])+
   Number(document.querySelector('#time').innerHTML.split(':')[0])*60
-  if (document.querySelector('#btnLaunch').innerHTML == "Launch" ||
-  document.querySelector('#btnLaunch').innerHTML == "Resume") {
+  let doc = document.querySelector('#btnLaunch').innerHTML
+  if ((doc == "Launch" ||
+  doc == "Resume" ||
+  doc == "Take break") && 
+  obj.time > 0) {
     document.querySelector('#btnLaunch').innerHTML = "Pause"
-    changeColor(red)
-    play = 1
+    console.log(`var pause : ${pause}`)
+    if (pause == 0) {
+      changeColor(red)
+    } else if (pause == 1) {
+      changeColor(green)
+    }
+
     inter = setInterval(function() {
-      if (obj.time > 0 && play == 1) {
+      if (obj.time > 0) {
+        resetSwitch = 0 
         obj.launchTimer()
       }
-      if (obj.time < 0 || play == 0) {
+      if (obj.time <= 0) {
+        var audio = new Audio("src/audio.wav")
+        audio.play()
+        if (pause == 0) {
+          changeColor(green)
+          pause = 1
+          document.querySelector("#btnLaunch").innerHTML = "Take break"
+        } else {
+          changeColor(blue)
+          pause = 0 
+          document.querySelector('#btnLaunch').innerHTML = "Launch"
+        }
         clearInterval(inter)
+        obj.time += 2 ; 
+        obj.format = "00:02" ;
+        document.querySelector('#time').innerHTML = obj.format
       }
     }, 1000)
-    } else {
+  } else if (obj.time > 0){
+      console.log('pause()')
       document.querySelector('#btnLaunch').innerHTML = "Resume"
       changeColor(yellow)
       clearInterval(inter)
-      play = 1 
       obj.time = Number(document.querySelector('#time').innerHTML.split(':')[1])+
       Number(document.querySelector('#time').innerHTML.split(':')[0])*60 
-      console.log(obj.time)
-    }
+  }
 });
 
 let reset = document.querySelector('#btnReset') 
 reset.addEventListener("click", function() {
-  changeColor(blue)
+  // Il faut modifier la couleur pour que ce soit en bleu 
+  // Il faut modifier l'affichage du texte
+  pause = 0
   clearInterval(inter)
+  resetSwitch = 1
+  changeColor(blue)
   document.querySelector('#btnLaunch').innerHTML = "Launch"
   obj.time = 0 ; 
   obj.format = "00:00"

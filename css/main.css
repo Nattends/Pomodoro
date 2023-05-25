@@ -19,15 +19,16 @@ body h1 {
 }
 
 #job {
-  margin-top: 4vh; 
+  height: 17vh;
   display: flex;
   justify-content: center;
-  align-content: center;
   flex-direction: column;
   text-align: center;
-  font-size: 2vh;
+  font-size: 3vh;
+  font-weight: 700;
   visibility: hidden;
 }
+
 .mainBox {
   /* STYLE */
   border-radius: 8vh; 
