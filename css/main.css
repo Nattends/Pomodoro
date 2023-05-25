@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+html {
+  --gray: #222222;
+  --white: #fff;
+  --green: #68c97a;
+  --yellow: #ffb53e; 
+  --red: #d92110;
+  --blue: #3ebbff;
+}
+
+body {
+  background-color: var(--gray);
+  color: var(--green);
+  font-family: "Open Sans", sans-serif;
+}
+
+body h1 {
+  font-weight: 600;
+}
+
+#job {
+  margin-top: 4vh; 
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: 2vh;
+  visibility: hidden;
+}
+.mainBox {
+  /* STYLE */
+  border-radius: 8vh; 
+  background-color: var(--blue);
+  box-shadow: 6px -2px 33px -6px var(--blue);
+    -webkit-box-shadow: 6px -2px 33px -6px var(--blue);
+    -moz-box-shadow: 6px -2px 33px -6px var(--blue);
+  /* TAILLE */ 
+  height: 60vh;
+  width: 80vw;
+
+  /* CENTRAGE OUT */ 
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  
+  /* CENTRAGE IN */ 
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
+  
+  /* FONT */ 
+  line-height: 0vh;
+  color: var(--gray);
+}
+
+.time {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    text-align: center;
+    font-weight: 800;
+    font-size: 15vh;
+}
+
+#time {
+  padding: 0; 
+  margin-top: 12vh;
+  margin-bottom: 12vh;
+}
+
+.buttons button{
+    background-color: var(--gray);
+    color: var(--white);
+    width: 10vw ;
+    height: 5vh ;
+    border: none;
+    margin-left: auto ; margin-right : auto; 
+    line-height: 0%;
+    left: 0; right: 0; 
+    box-shadow: 6px -2px 33px -6px var(--gray);
+    -webkit-box-shadow: 6px -2px 33px -6px var(--gray);
+    -moz-box-shadow: 6px -2px 33px -6px var(--gray);
+    border-radius: 1.3vw;
+}
+
+.buttons button:hover {
+  background-color: var(--white);
+  color: var(--gray)
+}
+
+#btnReset:active, #btnLaunch:active {
+    background-color: var(--blue);
+}
+
+#triangleBottom, #triangleTop {
+  height: 4vh ;
+  width: auto; 
+}
+
+#triangleBottom {
+  padding-bottom: 6vh;
+}
