@@ -89,10 +89,10 @@ function changeColor(color) {
 // 0 = 
 // 1 = 
 let resetSwitch = 0 
-let obj = new Time(Number(document.querySelector('#time').innerHTML.split(':')[1])+
+let temps = new Time(Number(document.querySelector('#time').innerHTML.split(':')[1])+
 Number(document.querySelector('#time').innerHTML.split(':')[0])*60) 
 /* setInterval(function() {
-  if (obj.time == 0 && resetSwitch == 0 && pause == 0) {
+  if (temps.time == 0 && resetSwitch == 0 && pause == 0) {
     changeColor(green)
   } 
 }, 100) 
@@ -104,13 +104,13 @@ var inter
 let launch = document.querySelector('#btnLaunch')
 launch.addEventListener("click", function() {
   resetSwitch = 0 
-  obj.time = Number(document.querySelector('#time').innerHTML.split(':')[1])+
+  temps.time = Number(document.querySelector('#time').innerHTML.split(':')[1])+
   Number(document.querySelector('#time').innerHTML.split(':')[0])*60
   let doc = document.querySelector('#btnLaunch').innerHTML
   if ((doc == "Launch" ||
   doc == "Resume" ||
   doc == "Take break") && 
-  obj.time > 0) {
+  temps.time > 0) {
     document.querySelector('#btnLaunch').innerHTML = "Pause"
     console.log(`var pause : ${pause}`)
     if (pause == 0) {
@@ -120,11 +120,11 @@ launch.addEventListener("click", function() {
     }
 
     inter = setInterval(function() {
-      if (obj.time > 0) {
+      if (temps.time > 0) {
         resetSwitch = 0 
-        obj.launchTimer()
+        temps.launchTimer()
       }
-      if (obj.time <= 0) {
+      if (temps.time <= 0) {
         var audio = new Audio("src/audio.wav")
         audio.play()
         if (pause == 0) {
@@ -137,17 +137,17 @@ launch.addEventListener("click", function() {
           document.querySelector('#btnLaunch').innerHTML = "Launch"
         }
         clearInterval(inter)
-        obj.time += 2 ; 
-        obj.format = "00:02" ;
-        document.querySelector('#time').innerHTML = obj.format
+        temps.time += 2 ; 
+        temps.format = "00:02" ;
+        document.querySelector('#time').innerHTML = temps.format
       }
     }, 1000)
-  } else if (obj.time > 0){
+  } else if (temps.time > 0){
       console.log('pause()')
       document.querySelector('#btnLaunch').innerHTML = "Resume"
       changeColor(yellow)
       clearInterval(inter)
-      obj.time = Number(document.querySelector('#time').innerHTML.split(':')[1])+
+      temps.time = Number(document.querySelector('#time').innerHTML.split(':')[1])+
       Number(document.querySelector('#time').innerHTML.split(':')[0])*60 
   }
 });
@@ -161,9 +161,9 @@ reset.addEventListener("click", function() {
   resetSwitch = 1
   changeColor(blue)
   document.querySelector('#btnLaunch').innerHTML = "Launch"
-  obj.time = 0 ; 
-  obj.format = "00:00"
-  document.querySelector('#time').innerHTML = obj.showTime() ;
+  temps.time = 300 ; 
+  temps.format = "05:00"
+  document.querySelector('#time').innerHTML = temps.showTime() ;
   console.log('reset() done')
 })
 
@@ -171,21 +171,22 @@ reset.addEventListener("click", function() {
 
 let up = document.querySelector('#triangleTop')
 up.addEventListener("click", function() {
-  if (obj.time == 0) {
-    changeColor(blue)
+  if (temps.time <= 3600-300) {
+    temps.time += 300
+  } else if (temps.time+300 > 3600) {
+    temps.time = 3600
   }
-  if (obj.time <= 3600-300) {
-    obj.time += 300
-  }
-  document.querySelector('#time').innerHTML = obj.showTime();
+  document.querySelector('#time').innerHTML = temps.showTime();
   console.log('up()')
 })
 
 let down = document.querySelector('#triangleBottom')
 down.addEventListener("click", function() {
-  if (obj.time-300 >= 300) {
-    obj.time -= 300
-  } 
-  document.querySelector('#time').innerHTML = obj.showTime() ;
+  if (temps.time-300 <= 300) {
+    temps.time = 300
+  } else if(temps.time-300 >= 300) {
+    temps.time -= 300
+  }
+  document.querySelector('#time').innerHTML = temps.showTime() ;
   console.log('Down()')
 })
