@@ -1,4 +1,4 @@
-class Time {
+export class Time {
   constructor(sec) {
     this.time = Number(sec) 
     this.format = this.showTime()
@@ -47,12 +47,12 @@ class Time {
 } 
 
 
-gray = "222222"
-white = "FFFFFF"
-green = "68c97a"
-yellow = "ffb53e"
-red  = "d92110"
-blue = "3ebbff"
+let gray = "222222"
+let white = "FFFFFF"
+let green = "68c97a"
+let yellow = "ffb53e"
+let red  = "d92110"
+let blue = "3ebbff"
 
 function changeColor(color) {
   gray = "222222"
@@ -166,8 +166,6 @@ reset.addEventListener("click", function() {
   document.querySelector('#time').innerHTML = temps.showTime() ;
   console.log('reset() done')
 })
-
-
 
 let up = document.querySelector('#triangleTop')
 up.addEventListener("click", function() {

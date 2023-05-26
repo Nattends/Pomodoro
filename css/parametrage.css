@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+html {
+  --gray: #222222;
+  --white: #fff;
+  --green: #68c97a;
+  --yellow: #ffb53e; 
+  --red: #d92110;
+  --blue: #3ebbff;
+}
+
+body {
+  background-color: var(--gray);
+  color: var(--green);
+  font-family: "Open Sans", sans-serif;
+}
+
+.mainBox {
+    /* STYLE */
+    border-radius: 8vh; 
+    background-color: var(--blue);
+    box-shadow: 6px -2px 33px -6px var(--blue);
+      -webkit-box-shadow: 6px -2px 33px -6px var(--blue);
+      -moz-box-shadow: 6px -2px 33px -6px var(--blue);
+    /* TAILLE */ 
+    height: 60vh;
+    width: 80vw;
+  
+    /* CENTRAGE OUT */ 
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    
+    /* CENTRAGE IN */ 
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    text-align: center;
+    
+    /* FONT */ 
+    line-height: 0vh;
+    color: var(--gray);
+  }
+  
+.workTime {
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    flex-direction: row;
+    text-align: center;
+    
+}
+
+.time {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+    text-align: center;
+    width: 9vw;
+}
+
+#timeWork, #timePause, #nbCycle {
+    display: flex ; 
+    align-items: center;
+    font-size: 8vh; 
+}
+
+.spaceTime {
+    padding-left: 3vw ; 
+    padding-right: 3vw; 
+}
+
+.triangle {
+    height: 3vh;
+    width: auto;
+}
+
+#row {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: row;
+    text-align: center;
+}
+
+#infos {
+  padding-top: 8vh;
+  font-size: 2vh;
+  font-weight: 600;
+}
+
+#infosTravail, #infosPause, #infosCycles, #infosTotalTravail {
+  padding-bottom: 1vh;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pomodoro</title>
+    <link rel="stylesheet" type="text/css" href="css/parametrage.css" />
+  </head>
+
+  <body>
+    <div class="mainBox" id="mainBox">
+      <div class="workTime">
+        <div class='time'>
+            <img src="img/triangleTop.svg" alt="upArrow" class="triangle" id="upWork">
+            <div id="row">
+                <p id="timeWork">25</p>
+                <p id="min">min</p>
+            </div>
+            <img src="img/triangleBottom.svg" alt="downArrow" class="triangle" id="downWork">
+        </div>
+        <p class="spaceTime"></p>
+        <div class='time'>
+            <img src="img/triangleTop.svg" alt="upArrow" class="triangle" id='upPause'>
+            <div id='row'>
+                <p id="timePause">5</p>
+                <p id="min">min</p>
+            </div>
+            <img src="img/triangleBottom.svg" alt="downArrow" class="triangle" id='downPause'>
+        </div>
+        <p class="spaceTime"></p>
+        <div class='time'>
+            <img src="img/triangleTop.svg" alt="upArrow" class="triangle" id="upCycles">
+            <div id="row">
+                <p id="nbCycle">2</p>
+                <p id="min">cycles</p>
+            </div>
+            <img src="img/triangleBottom.svg" alt="downArrow" class="triangle" id="downCycles">
+        </div>
+      </div>
+      <div id='infos'>
+        <p id='infosTravail'>600min de travail</p>
+        <p id='infosPause'>300min de pause</p>
+        <p id='infosTotal'>16h00 au total</p>
+      </div>
+    </div>
+    <script src="js/parametrage.js"></script>
+    <script src="js/mainApp.js"></script>
+  </body>
+</html>
