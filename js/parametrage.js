@@ -1,4 +1,4 @@
-class Time {
+class TimeParam {
     constructor(sec) {
       this.time = Number(sec) 
       this.format = this.showTime()
@@ -25,8 +25,8 @@ class Time {
     
 }
 
-let tempsTravail = new Time(0) 
-let tempsPause = new Time(0)
+let tempsTravail = new TimeParam(0) 
+let tempsPause = new TimeParam(0)
 let cycles
 setInterval(function() {
   cycles = Number(document.querySelector("#nbCycle").innerHTML)

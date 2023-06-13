@@ -1,4 +1,4 @@
-export class Time {
+class Time {
   constructor(sec) {
     this.time = Number(sec) 
     this.format = this.showTime()
@@ -46,6 +46,9 @@ export class Time {
   }
 } 
 
+// let tempsPause = document.querySelector("#timePause").innerHTML
+// let tempsTravail = document.querySelector("#timeWork").innerHTML
+// console.log(tempsPause, tempsTravail)
 
 let gray = "222222"
 let white = "FFFFFF"
@@ -65,7 +68,6 @@ function changeColor(color) {
   if (color == "68c97a") { // green
     texte.style.visibility = "visible" ;
     texte.style.color = `#${color}` ;  
-    texte.innerHTML = 'Repos'
   } else if (color == 'ffb53e') { // yellow 
     texte.style.visibility = "visible" ;
     texte.style.color = `#${color}` ;  
@@ -89,6 +91,7 @@ function changeColor(color) {
 // 0 = 
 // 1 = 
 let resetSwitch = 0 
+let nbPause = 0
 let temps = new Time(Number(document.querySelector('#time').innerHTML.split(':')[1])+
 Number(document.querySelector('#time').innerHTML.split(':')[0])*60) 
 /* setInterval(function() {
@@ -99,7 +102,7 @@ Number(document.querySelector('#time').innerHTML.split(':')[0])*60)
 */
 
 let pause = 0 
-
+ 
 var inter
 let launch = document.querySelector('#btnLaunch')
 launch.addEventListener("click", function() {
@@ -115,7 +118,7 @@ launch.addEventListener("click", function() {
     console.log(`var pause : ${pause}`)
     if (pause == 0) {
       changeColor(red)
-    } else if (pause == 1) {
+    } else if (pause == 1 || longBreak == 2) {
       changeColor(green)
     }
 
@@ -124,23 +127,39 @@ launch.addEventListener("click", function() {
         resetSwitch = 0 
         temps.launchTimer()
       }
+
       if (temps.time <= 0) {
         var audio = new Audio("src/audio.wav")
         audio.play()
         if (pause == 0) {
           changeColor(green)
           pause = 1
+          nbPause += 1 
           document.querySelector("#btnLaunch").innerHTML = "Take break"
+          if (nbPause == 4) {
+            document.querySelector("#job").innerHTML = "Take long break"
+            nbPause = 0 
+            temps.time += 900 ; 
+            temps.format = "15:00" ;
+            document.querySelector('#time').innerHTML = temps.format
+          } else {
+            document.querySelector("#job").innerHTML = "Take short break"
+            temps.time += 300 ; 
+            temps.format = "05:00" ;
+            document.querySelector('#time').innerHTML = temps.format
+          }
         } else {
           changeColor(blue)
           pause = 0 
           document.querySelector('#btnLaunch').innerHTML = "Launch"
+          temps.time += 1500 ; 
+          temps.format = "25:00" ;
+          document.querySelector('#time').innerHTML = temps.format
         }
         clearInterval(inter)
-        temps.time += 2 ; 
-        temps.format = "00:02" ;
-        document.querySelector('#time').innerHTML = temps.format
+
       }
+
     }, 1000)
   } else if (temps.time > 0){
       console.log('pause()')
@@ -150,6 +169,7 @@ launch.addEventListener("click", function() {
       temps.time = Number(document.querySelector('#time').innerHTML.split(':')[1])+
       Number(document.querySelector('#time').innerHTML.split(':')[0])*60 
   }
+  
 });
 
 let reset = document.querySelector('#btnReset') 
