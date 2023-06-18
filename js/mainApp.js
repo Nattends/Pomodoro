@@ -111,7 +111,6 @@ launch.addEventListener("click", function() {
   doc == "Take break") && 
   temps.time > 0) {
     document.querySelector('#btnLaunch').innerHTML = "Pause"
-    console.log(`var pause : ${pause}`)
     if (pause == 0) {
       changeColor(Color.red)
     } else if (pause == 1 || longBreak == 2) {
@@ -158,7 +157,6 @@ launch.addEventListener("click", function() {
 
     }, 1000)
   } else if (temps.time > 0){
-      console.log('pause()')
       document.querySelector('#btnLaunch').innerHTML = "Resume"
       changeColor(Color.yellow)
       clearInterval(inter)
@@ -189,7 +187,6 @@ up.addEventListener("click", function() {
     temps.time = 3600
   }
   document.querySelector('#time').innerHTML = temps.showTime();
-  console.log('up()')
 })
 
 let down = document.querySelector('#triangleBottom')
@@ -200,5 +197,4 @@ down.addEventListener("click", function() {
     temps.time -= 300
   }
   document.querySelector('#time').innerHTML = temps.showTime() ;
-  console.log('Down()')
 })
