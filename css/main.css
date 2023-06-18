@@ -63,18 +63,10 @@ body h1 {
   flex-direction: row;
   text-align: center;
   font-weight: 800;
-  font-size: 15vh;
+  font-size: 10vw;
   padding: 0;
   margin: 0;
   padding-bottom: 2vh;
-}
-
-#triangleTop {
-  padding-left : 4vh ; 
-}
-
-#triangleBottom {
-  padding-right : 4vh ; 
 }
 
 .time img {
@@ -109,6 +101,14 @@ body h1 {
 }
 
 #triangleBottom, #triangleTop {
-  height: 4vh ;
-  width: auto; 
+  height: 4vh ; 
+  width: 4vw ; 
+}
+
+#triangleTop {
+  padding-left : 4vh ;
+}
+
+#triangleBottom {
+  padding-right : 4vh ; 
 }

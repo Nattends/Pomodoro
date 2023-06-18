@@ -6,6 +6,7 @@ class Time {
 
   addTime(sec) {
     this.time += sec
+    
     if (this.time > 3600) {
       this.time = 3600
     }
@@ -46,39 +47,34 @@ class Time {
   }
 } 
 
-// let tempsPause = document.querySelector("#timePause").innerHTML
-// let tempsTravail = document.querySelector("#timeWork").innerHTML
-// console.log(tempsPause, tempsTravail)
 
-let gray = "222222"
-let white = "FFFFFF"
-let green = "68c97a"
-let yellow = "ffb53e"
-let red  = "d92110"
-let blue = "3ebbff"
+
+let Color = {
+  gray : "222222",
+  white : "FFFFFF",
+  green : "68c97a",
+  yellow : "ffb53e",
+  red  : "d92110",
+  blue : "3ebbff" 
+
+}
 
 function changeColor(color) {
-  gray = "222222"
-  white = "FFFFFF"
-  green = "68c97a"
-  yellow = "ffb53e"
-  red  = "d92110"
-  blue = "3ebbff"
   let texte = document.getElementById('job')
-  if (color == "68c97a") { // green
+  if (color == Color.green) { // green
     texte.style.visibility = "visible" ;
     texte.style.color = `#${color}` ;  
-  } else if (color == 'ffb53e') { // yellow 
+  } else if (color == Color.yellow) { // yellow 
     texte.style.visibility = "visible" ;
     texte.style.color = `#${color}` ;  
     texte.innerHTML = 'Chrono en pause'
-  } else if (color == "d92110") { //red
+  } else if (color == Color.red) { //red
     texte.style.visibility = "visible" ;
     texte.style.color = `#${color}` ;  
     texte.innerHTML = 'Travail'
-  } else if (color == "3ebbff") { //blue
+  } else if (color == Color.blue) { //blue
     texte.style.visibility = "hidden" ;
-    texte.style.color = `#${blue}` ;  
+    texte.style.color = `#${color}` ;  
   }
   
   let mainBox = document.getElementById('mainBox')
@@ -117,9 +113,9 @@ launch.addEventListener("click", function() {
     document.querySelector('#btnLaunch').innerHTML = "Pause"
     console.log(`var pause : ${pause}`)
     if (pause == 0) {
-      changeColor(red)
+      changeColor(Color.red)
     } else if (pause == 1 || longBreak == 2) {
-      changeColor(green)
+      changeColor(Color.green)
     }
 
     inter = setInterval(function() {
@@ -132,7 +128,7 @@ launch.addEventListener("click", function() {
         var audio = new Audio("src/audio.wav")
         audio.play()
         if (pause == 0) {
-          changeColor(green)
+          changeColor(Color.green)
           pause = 1
           nbPause += 1 
           document.querySelector("#btnLaunch").innerHTML = "Take break"
@@ -149,7 +145,7 @@ launch.addEventListener("click", function() {
             document.querySelector('#time').innerHTML = temps.format
           }
         } else {
-          changeColor(blue)
+          changeColor(Color.blue)
           pause = 0 
           document.querySelector('#btnLaunch').innerHTML = "Launch"
           temps.time += 1500 ; 
@@ -164,7 +160,7 @@ launch.addEventListener("click", function() {
   } else if (temps.time > 0){
       console.log('pause()')
       document.querySelector('#btnLaunch').innerHTML = "Resume"
-      changeColor(yellow)
+      changeColor(Color.yellow)
       clearInterval(inter)
       temps.time = Number(document.querySelector('#time').innerHTML.split(':')[1])+
       Number(document.querySelector('#time').innerHTML.split(':')[0])*60 
@@ -176,15 +172,13 @@ let reset = document.querySelector('#btnReset')
 reset.addEventListener("click", function() {
   // Il faut modifier la couleur pour que ce soit en bleu 
   // Il faut modifier l'affichage du texte
-  pause = 0
+  changeColor(Color.blue)
+  temps.time = 1500 
+  temps.format = "25:00"
+  pause = 0 ; resetSwitch = 1
   clearInterval(inter)
-  resetSwitch = 1
-  changeColor(blue)
   document.querySelector('#btnLaunch').innerHTML = "Launch"
-  temps.time = 300 ; 
-  temps.format = "05:00"
   document.querySelector('#time').innerHTML = temps.showTime() ;
-  console.log('reset() done')
 })
 
 let up = document.querySelector('#triangleTop')
