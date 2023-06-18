@@ -67,11 +67,11 @@ function changeColor(color) {
   } else if (color == Color.yellow) { // yellow 
     texte.style.visibility = "visible" ;
     texte.style.color = `#${color}` ;  
-    texte.innerHTML = 'Chrono en pause'
+    texte.innerHTML = 'Pause'
   } else if (color == Color.red) { //red
     texte.style.visibility = "visible" ;
     texte.style.color = `#${color}` ;  
-    texte.innerHTML = 'Travail'
+    texte.innerHTML = 'Work'
   } else if (color == Color.blue) { //blue
     texte.style.visibility = "hidden" ;
     texte.style.color = `#${color}` ;  
